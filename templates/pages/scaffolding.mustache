@@ -5,7 +5,7 @@
     <h1>{{_i}}Scaffolding{{/i}}</h1>
     <p class="lead">{{_i}}Bootstrap is built on responsive 12-column grids, layouts, and components.{{/i}}</p>
   </div>
-  <img class="extended-badge" src="assets/img/extended-by-jasny.png">
+  <a class="extended-badge" href="http://www.jasny.net" {{#production}}onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron badge', 'Jasny.net']);"{{/production}}><img src="assets/img/extended-by-jasny.png"></a>
 </header>
 
   <div class="container">
@@ -53,7 +53,7 @@
           <p>{{_i}}These styles can be found within <strong>scaffolding.less</strong>.{{/i}}</p>
 
           <h3>{{_i}}Reset via Normalize{{/i}}</h3>
-          <p>{{_i}}With Bootstrap 2, the old reset block has been dropped in favor of <a href="http://necolas.github.com/normalize.css/" target="_blank">Normalize.css</a>, a project by <a href="http://twitter.com/necolas" target="_blank">Nicolas Gallagher</a> that also powers the <a href="http://html5boilerplate.com" target="_blank">HTML5 Boilerplate</a>. While we use much of Normalize within our <strong>reset.less</strong>, we have removed some elements specifically for Bootstrap.{{/i}}</p>
+          <p>{{_i}}With Bootstrap 2, the old reset block has been dropped in favor of <a href="http://necolas.github.com/normalize.css/" target="_blank">Normalize.css</a>, a project by <a href="http://twitter.com/necolas" target="_blank">Nicolas Gallagher</a> and <a href="http://twitter.com/jon_neal" target="_blank">Jonathan Neal</a> that also powers the <a href="http://html5boilerplate.com" target="_blank">HTML5 Boilerplate</a>. While we use much of Normalize within our <strong>reset.less</strong>, we have removed some elements specifically for Bootstrap.{{/i}}</p>
 
         </section>
 
@@ -131,7 +131,7 @@
           <p>{{_i}}To nest your content with the default grid, add a new <code>.row</code> and set of <code>.span*</code> columns within an existing <code>.span*</code> column. Nested rows should include a set of columns that add up to the number of columns of its parent.{{/i}}</p>
           <div class="row show-grid">
             <div class="span9">
-              {{_i}}Level 1 of column{{/i}}
+              {{_i}}Level 1 column{{/i}}
               <div class="row show-grid">
                 <div class="span6">
                   {{_i}}Level 2{{/i}}
@@ -231,13 +231,21 @@
 </pre>
 
           <h2>{{_i}}Fluid nesting{{/i}}</h2>
-          <p>{{_i}}Nesting with fluid grids is a bit different: the number of nested columns should not match the parent's number of columns. Instead, each level of nested columns are reset because each row takes up 100% of the parent column.{{/i}}</p>
+          <p>{{_i}}Fluid grids utilize nesting differently: each nested level of columns should add up to 12 columns. This is because the fluid grid uses percentages, not pixels, for setting widths.{{/i}}</p>
           <div class="row-fluid show-grid">
             <div class="span12">
               {{_i}}Fluid 12{{/i}}
               <div class="row-fluid show-grid">
                 <div class="span6">
                   {{_i}}Fluid 6{{/i}}
+                  <div class="row-fluid show-grid">
+                    <div class="span6">
+                      {{_i}}Fluid 6{{/i}}
+                    </div>
+                    <div class="span6">
+                      {{_i}}Fluid 6{{/i}}
+                    </div>
+                  </div>
                 </div>
                 <div class="span6">
                   {{_i}}Fluid 6{{/i}}
@@ -248,10 +256,16 @@
 <pre class="prettyprint linenums">
 &lt;div class="row-fluid"&gt;
   &lt;div class="span12"&gt;
-    {{_i}}Level 1 of column{{/i}}
+    {{_i}}Fluid 12{{/i}}
     &lt;div class="row-fluid"&gt;
-      &lt;div class="span6"&gt;{{_i}}Level 2{{/i}}&lt;/div&gt;
-      &lt;div class="span6"&gt;{{_i}}Level 2{{/i}}&lt;/div&gt;
+      &lt;div class="span6"&gt;
+        {{_i}}Fluid 6{{/i}}
+        &lt;div class="row-fluid"&gt;
+          &lt;div class="span6"&gt;{{_i}}Fluid 6{{/i}}&lt;/div&gt;
+          &lt;div class="span6"&gt;{{_i}}Fluid 6{{/i}}&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="span6"&gt;{{_i}}Fluid 6{{/i}}&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -301,6 +315,7 @@
 &lt;/div&gt;
 </pre>
 
+          <a name="semi-fluid-layout"></a>
           <h2>{{_i}}Semi-fluid layout{{/i}}</h2>
           <p>{{_i}}Get the best of both worlds with <code>&lt;div class="container-semifluid"&gt;</code>. It acts as a fixed layout for big screens. For smaller screens, it behaves like a fluid layout.{{/i}}</p>
           <div class="semifluid-layouts">
@@ -461,7 +476,7 @@
           </table>
 
           <h3>{{_i}}When to use{{/i}}</h3>
-          <p>{{_i}}Use on a limited basis and avoid creating entirely different versions of the same site. Instead, use them to complement each device's presentation.{{/i}}</p>
+          <p>{{_i}}Use on a limited basis and avoid creating entirely different versions of the same site. Instead, use them to complement each device's presentation. Responsive utilities should not be used with tables, and as such are not supported.{{/i}}</p>
 
           <h3>{{_i}}Responsive utilities test case{{/i}}</h3>
           <p>{{_i}}Resize your browser or load on different devices to test the above classes.{{/i}}</p>
@@ -481,6 +496,7 @@
           </ul>
 
           <!-- Desktop row -->
+          <a name="row-desktop"></a>
           <h2>{{_i}}Desktop rows{{/i}}</h2>
           <p>{{_i}}By default columns of a <code>.row</code> are show next to each other, however for phones the columns are show underneath each other. By adding the class <code>.row-desktop</code> to a row,
           it will display the columns underneath each other for tablets as well.{{/i}}</p>

@@ -53,6 +53,7 @@ body > .navbar .brand:hover {
     position: absolute;
     top: 30px;
     right: 30px;
+    z-index: 1;
 }
 
 /* Sections
@@ -73,6 +74,11 @@ section > ul li {
 /* Separators (hr) */
 .bs-docs-separator {
   margin: 40px 0 39px;
+}
+
+.page-header .header-actions {
+  line-height: 50px;
+  padding: 0;
 }
 
 /* Faded out hr */
@@ -120,7 +126,7 @@ hr.soften {
 .jumbotron p {
   font-size: 24px;
   font-weight: 300;
-  line-height: 30px;
+  line-height: 1.25;
   margin-bottom: 30px;
 }
 
@@ -139,7 +145,7 @@ hr.soften {
 
 /* Download button */
 .masthead .btn {
-  padding: 20px 24px 14px 24px;
+  padding: 19px 24px 14px 24px;
   font-size: 24px;
   line-height: 20px;
   font-weight: 200;
@@ -193,6 +199,16 @@ hr.soften {
   left: 0;
   background: url(../img/bs-docs-masthead-pattern.png) repeat center center;
   opacity: .4;
+}
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1) {
+
+  .jumbotron:after {
+    background-size: 150px 150px;
+  }
+
 }
 
 /* Masthead (docs home)
@@ -294,6 +310,9 @@ hr.soften {
   font-size: 16px;
   line-height: 1.5;
 }
+.changes ul {
+  text-align: left;
+}
 .changes .row {
   margin-bottom: 9px;
 }
@@ -302,12 +321,13 @@ hr.soften {
   margin-bottom: 40px;
   font-size: 20px;
   font-weight: 300;
-  line-height: 25px;
+  line-height: 1.25;
   color: #999;
 }
-.marketing img {
+.marketing-img {
   display: block;
   margin: 0 auto 30px;
+  max-height: 145px;
 }
 
 
@@ -316,7 +336,8 @@ hr.soften {
 -------------------------------------------------- */
 
 .footer {
-  padding: 70px 0;
+  text-align: center;
+  padding: 30px 0;
   margin-top: 70px;
   border-top: 1px solid #e5e5e5;
   background-color: #f5f5f5;
@@ -330,7 +351,10 @@ hr.soften {
 }
 .footer-links li {
   display: inline;
-  margin-right: 10px;
+  padding: 0 2px;
+}
+.footer-links li:first-child {
+  padding-left: 0;
 }
 
 
@@ -359,7 +383,13 @@ hr.soften {
   margin-bottom: 0;
 }
 .show-grid .show-grid [class*="span"] {
+  margin-top: 5px;
+}
+.show-grid [class*="span"] [class*="span"] {
   background-color: #ccc;
+}
+.show-grid [class*="span"] [class*="span"] [class*="span"] {
+  background-color: #999;
 }
 
 
@@ -432,6 +462,22 @@ hr.soften {
 
 /* Download page
 -------------------------------------------------- */
+
+#customupload {
+  display: block;
+  margin-top: 20px;
+  margin-right: 12px;
+  text-align: center;
+}
+
+.affix #customupload {
+  margin-right: 0;
+}
+
+#no-customupload {
+  margin-top: 20px;
+  width: 206px;
+}
 
 .download .page-header {
   margin-top: 36px;
@@ -722,12 +768,26 @@ form.bs-docs-example {
   margin: 20px;
 }
 
-/* Alerts
--------------------------- */
+/* Alerts */
 #page-alert-container {
   position: relative;
   border-top: 1px solid #DDDDDD;
   padding-top: 5px;
+}
+
+/* Dropdowns */
+.bs-docs-example-submenus {
+  min-height: 180px;
+}
+.bs-docs-example-submenus > .pull-left + .pull-left {
+  margin-left: 20px;
+}
+.bs-docs-example-submenus .dropup > .dropdown-menu,
+.bs-docs-example-submenus .dropdown > .dropdown-menu {
+  display: block;
+  position: static;
+  margin-bottom: 5px;
+  *width: 180px;
 }
 
 
@@ -818,7 +878,7 @@ form.bs-docs-example {
 }
 .bs-docs-sidenav > li > a {
   display: block;
-  *width: 190px;
+  width: 190px \9;
   margin: 0 0 -1px;
   padding: 8px 14px;
   border: 1px solid #e5e5e5;
@@ -861,7 +921,7 @@ form.bs-docs-example {
   background-image: url(../img/glyphicons-halflings-white.png);
   opacity: 1;
 }
-.bs-docs-sidenav.affix {
+.bs-docs-sidebar > .affix {
   top: 40px;
 }
 .bs-docs-sidenav.affix-bottom {
@@ -884,6 +944,9 @@ form.bs-docs-example {
   }
   .bs-docs-sidenav {
     width: 258px;
+  }
+  .bs-docs-sidenav > li > a {
+    width: 230px \9; /* Override the previous IE8-9 hack */
   }
 }
 
@@ -912,6 +975,7 @@ form.bs-docs-example {
   /* When affixed, space properly */
   .bs-docs-sidenav {
     top: 0;
+    width: 218px;
     margin-top: 30px;
     margin-right: 0;
   }
@@ -924,7 +988,7 @@ form.bs-docs-example {
 
 /* Tablet to desktop
 ------------------------- */
-@media (min-width: 768px) and (max-width: 980px) {
+@media (min-width: 768px) and (max-width: 979px) {
   /* Remove any padding from the body */
   body {
     padding-top: 0;
@@ -1023,11 +1087,11 @@ form.bs-docs-example {
 
   /* Downsize the jumbotrons */
   .jumbotron h1 {
-    font-size: 60px;
+    font-size: 45px;
   }
   .jumbotron p,
   .jumbotron .btn {
-    font-size: 20px;
+    font-size: 18px;
   }
   .jumbotron .btn {
     display: block;
@@ -1042,7 +1106,10 @@ form.bs-docs-example {
 
   /* Marketing on home */
   .marketing h1 {
-    font-size: 40px;
+    font-size: 30px;
+  }
+  .marketing-byline {
+    font-size: 18px;
   }
 
   /* center example sites */
@@ -1073,7 +1140,26 @@ form.bs-docs-example {
     padding: 0;
   }
 
-  /* Modal example */
+  /* Examples: dropdowns */
+  .bs-docs-example-submenus > .pull-left {
+    float: none;
+    clear: both;
+  }
+  .bs-docs-example-submenus > .pull-left,
+  .bs-docs-example-submenus > .pull-left + .pull-left {
+    margin-left: 0;
+  }
+  .bs-docs-example-submenus p {
+    margin-bottom: 0;
+  }
+  .bs-docs-example-submenus .dropup > .dropdown-menu,
+  .bs-docs-example-submenus .dropdown > .dropdown-menu {
+    margin-bottom: 10px;
+    float: none;
+    max-width: 180px;
+  }
+
+  /* Examples: modal */
   .modal-example .modal {
     position: relative;
     top: auto;
@@ -1082,8 +1168,9 @@ form.bs-docs-example {
     left: auto;
   }
 
-  /* Unfloat the back to top in footer to prevent odd text wrapping */
-  .footer .pull-right {
-    float: none;
+  /* Tighten up footer */
+  .footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 }
