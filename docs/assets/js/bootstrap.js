@@ -2826,6 +2826,8 @@
     this.$remove = this.$element.find('[data-dismiss="fileupload"]')
 
     this.$element.find('[data-trigger="fileupload"]').on('click.fileupload', $.proxy(this.trigger, this))
+    
+    this.onChanged = options.onChanged ? options.onChanged : function() {};
 
     this.listen()
   }
@@ -2866,6 +2868,8 @@
       } else {
         this.$preview.text(file.name)
         this.$element.addClass('fileupload-exists').removeClass('fileupload-new')
+        
+        this.onChanged();
       }
     },
 
